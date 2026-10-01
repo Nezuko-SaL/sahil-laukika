@@ -1,0 +1,123 @@
+/* ─────────────────────────────────────────────────────────────
+   "The Celebrations" — the two-day running order.
+   Day One (Haldi, 14 Nov) is stated in full here; Day Two (the
+   wedding, 15 Nov) is introduced here and detailed by the Tilda
+   timeline block that follows immediately below.
+
+   Same vocabulary as css/scratch-date.css so it reads as native:
+   'NewFonts' weight 300 = Imperial Script (headings),
+   weight 600 = Ovo (body), #B48C3D gold on #f9f0e0.
+   ───────────────────────────────────────────────────────────── */
+
+/* Bottom padding clears the torn-paper edge the timeline block below
+   overlaps upward with. */
+#rec-celebrations {
+  background-color: #f9f0e0;
+  padding: 42px 0 46px;
+}
+
+.cel {
+  max-width: 430px;
+  margin-inline: auto;
+  padding-inline: 22px;
+  text-align: center;
+}
+
+.cel__title {
+  font-family: 'NewFonts', Georgia, serif;
+  font-weight: 300;                 /* Imperial Script */
+  font-size: 46px;
+  line-height: 1.1;
+  color: #B48C3D;
+  margin: 0 0 30px;
+}
+
+/* ── Day rule: "──────  Day One  ──────" ── */
+.cel__rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+.cel__rule::before,
+.cel__rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right,
+    rgba(180, 140, 61, 0), #B48C3D, rgba(180, 140, 61, 0));
+}
+.cel__rule span {
+  font-family: 'NewFonts', Georgia, serif;
+  font-weight: 600;                 /* Ovo */
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B48C3D;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.cel__day + .cel__day {
+  margin-top: 34px;
+}
+
+.cel__event {
+  font-family: 'NewFonts', Georgia, serif;
+  font-weight: 300;                 /* Imperial Script */
+  font-size: 38px;
+  line-height: 1.15;
+  color: #B48C3D;
+  margin: 0;
+}
+
+/* Date · time, in the countdown's gold with its candle shimmer */
+.cel__when {
+  font-family: 'NewFonts', Georgia, serif;
+  font-weight: 600;                 /* Ovo */
+  font-size: 20px;
+  line-height: 1.35;
+  margin: 8px 0 0;
+  background: linear-gradient(105deg,
+    #B48C3D 0%, #B48C3D 25%, #cda95a 46%, #d8ba72 52%,
+    #cda95a 58%, #B48C3D 75%, #B48C3D 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: cel-shimmer 4.5s ease-in-out infinite;
+}
+@keyframes cel-shimmer {
+  0%   { background-position: 100% 0; }
+  50%  { background-position: 0% 0; }
+  100% { background-position: 100% 0; }
+}
+
+.cel__venue {
+  font-family: 'NewFonts', Georgia, serif;
+  font-weight: 600;                 /* Ovo */
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c513f;
+  margin: 10px 0 0;
+}
+.cel__venue b {
+  font-weight: 600;
+  color: #5a4436;
+}
+
+/* Day Two hands off to the timeline below, so it stays compact */
+.cel__cont {
+  font-family: 'NewFonts', Georgia, serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a98f6a;
+  margin: 14px 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cel__when { animation: none; }
+}

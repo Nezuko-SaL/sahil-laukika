@@ -1,0 +1,6 @@
+# local preview scratch
+_preview.html
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

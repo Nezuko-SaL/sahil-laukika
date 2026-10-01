@@ -1,0 +1,57 @@
+/* ─────────────────────────────────────────────────────────────
+   Drifting petals.
+
+   Reuses the six gold petals the page already loads for its section
+   ornaments, so this costs no new assets.
+
+   Tasteful means restrained: few petals, slow, low opacity, behind
+   nothing important. Only transform and opacity animate, so it stays
+   on the compositor and never forces layout.
+   ───────────────────────────────────────────────────────────── */
+
+#petalField {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  overflow: hidden;
+  pointer-events: none;   /* never eat a tap meant for the page */
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+#petalField.is-on { opacity: 1; }
+
+/* Tab in the background, or the envelope still up: stop burning frames */
+#petalField.is-paused .petal { animation-play-state: paused; }
+
+.petal {
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  width: var(--size);
+  height: auto;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: petal-fall var(--dur) linear var(--delay) infinite;
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -14vh, 0) rotate(var(--r0));
+    opacity: 0;
+  }
+  10% { opacity: var(--op); }
+  50% {
+    transform: translate3d(var(--sway), 48vh, 0)
+               rotate(calc(var(--r0) + 180deg));
+  }
+  88% { opacity: var(--op); }
+  100% {
+    transform: translate3d(0, 114vh, 0) rotate(calc(var(--r0) + 360deg));
+    opacity: 0;
+  }
+}
+
+/* Falling debris is exactly what this setting exists to turn off */
+@media (prefers-reduced-motion: reduce) {
+  #petalField { display: none; }
+}
